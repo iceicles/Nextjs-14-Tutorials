@@ -20,3 +20,10 @@ export async function PATCH(request: Request, {params} : {params: {id: string}})
   // return updated comment
   return Response.json(comments[index])
 }
+
+export async function DELETE(request: Request, {params} : {params: {id: string}}) {
+  const index = comments.findIndex(comment => comment.id === parseInt(params.id))
+  const deletedComment = comments[index]
+  comments.splice(index, 1)
+  return Response.json(deletedComment)
+}
